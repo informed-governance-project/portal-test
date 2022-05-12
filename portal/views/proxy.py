@@ -7,7 +7,9 @@ from flask import Response
 from werkzeug.datastructures import Headers
 
 
+# proxy_bp: blueprint doing the reverse proxy job
 proxy_bp = Blueprint("proxy_bp", __name__, url_prefix="/")
+# based on permissions users will be proxied to the appropirate Web service.
 
 
 def check_login():
