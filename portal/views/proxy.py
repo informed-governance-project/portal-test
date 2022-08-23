@@ -75,6 +75,7 @@ def proxy_request(host, file=""):
         else:
             response_headers.add(key, value)
 
+    # Prepare the contents
     contents = resp.read()
 
     flask_response = Response(
