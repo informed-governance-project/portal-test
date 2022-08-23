@@ -1,4 +1,4 @@
-import urllib
+from urllib.parse import urlencode
 
 import httplib
 from flask import Blueprint
@@ -53,8 +53,8 @@ def proxy_request(host, file=""):
 
     if request.method == "POST":
         form_data = list(iterform(request.form))
-        form_data = urllib.urlencode(form_data)
-        request_headers["Content-Length"] = len(form_data)
+        form_data_str = urlencode(form_data)
+        request_headers["Content-Length"] = str(len(form_data_str))
     else:
         form_data = None
 
