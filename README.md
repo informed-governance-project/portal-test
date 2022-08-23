@@ -1,6 +1,13 @@
 # Informed Governance Portal
 
+## Launch the app
 
+```bash
+$ poetry install
+$ poetry shell
+$ export FLASK_APP=runserver.py
+$ flask --debug run
+```
 
 ## License
 
