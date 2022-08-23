@@ -38,6 +38,7 @@ def parse_host_port(h):
 @proxy_bp.route("/<host>/", methods=["GET", "POST"])
 @proxy_bp.route("/<host>/<path:file>", methods=["GET", "POST", "PUT", "DELETE"])
 def proxy_request(host, file=""):
+    """The route which is actually doing the job of a reverse proxy."""
     hostname, port = parse_host_port(host)
 
     # Whitelist a few headers to pass on
@@ -64,8 +65,17 @@ def proxy_request(host, file=""):
 
     # Clean up response headers for forwarding
     response_headers = Headers()
+    for key, value in resp.getheaders():
+        if key in ["content-length", "connection", "content-type"]:
+            continue
 
-    contents = ""
+        if key == "set-cookie":
+            cookies = value.split(",")
+            [response_headers.add(key, c) for c in cookies]
+        else:
+            response_headers.add(key, value)
+
+    contents = resp.read()
 
     flask_response = Response(
         response=contents,
