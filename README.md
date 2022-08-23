@@ -9,6 +9,13 @@ $ export FLASK_APP=runserver.py
 $ flask --debug run
 ```
 
+```bash
+$ curl http://127.0.0.1:5000/about/test
+{
+  "status": "OK"
+}
+```
+
 ## License
 
 This software is licensed under
