@@ -7,7 +7,7 @@ license = "AGPL-3.0-or-later"
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
-Flask = "^2.1.1"
+Flask = "^2.3.2"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.18.1"
